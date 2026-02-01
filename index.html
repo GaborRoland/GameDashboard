@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Game Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      margin: 0;
+      color: #fff;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .score {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .progress-container {
+      width: 300px;
+      height: 25px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: #ffd700;
+      border-radius: 15px;
+      transition: width 0.3s ease;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #ffd700;
+      color: #333;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 400px) {
+      .progress-container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Mini Interactive Game Dashboard</h1>
+  <div class="score">Score: <span id="score">0</span></div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progress"></div>
+  </div>
+  <button id="increaseBtn">Increase Score</button>
+
+  <script>
+    const scoreEl = document.getElementById('score');
+    const progressEl = document.getElementById('progress');
+    const button = document.getElementById('increaseBtn');
+
+    let score = 0;
+
+    button.addEventListener('click', () => {
+      score += 10;
+      if(score > 100) score = 100;
+      scoreEl.textContent = score;
+
+      // Update progress bar width
+      progressEl.style.width = score + '%';
+    });
+  </script>
+</body>
+</html>
